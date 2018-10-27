@@ -19,7 +19,7 @@ public class SubjectController {
         subjectService.saveSubject(subject);
     }
 
-    @GetMapping(value = "/subject")
+    @GetMapping(value = "/subjects")
     public List<Subject> listSubjects() throws SubjectsNotFoundException {
         List<Subject> allSubjects = subjectService.listAllSubjects();
         if(allSubjects.isEmpty()){

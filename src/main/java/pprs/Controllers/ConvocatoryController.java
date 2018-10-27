@@ -26,14 +26,13 @@ public class ConvocatoryController {
         return allConvocatories;
     }
 
-    @DeleteMapping(value = "/convocatory/delete")
+    @DeleteMapping(value = "/convocatory/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteConvocatory(@RequestBody Convocatory convocatory) throws ConvocatoryNotFoundException {
-        String idConvocatory = convocatory.getId();
-        if (!convocatoryService.alreadyExists(idConvocatory)) {
-            throw new ConvocatoryNotFoundException(idConvocatory);
+    public void deleteConvocatory(@PathVariable String id) throws ConvocatoryNotFoundException {
+        if (!convocatoryService.alreadyExists(id)) {
+            throw new ConvocatoryNotFoundException(id);
         }
-        convocatoryService.deleteConvocatory(convocatory);
+        convocatoryService.deleteById(id);
     }
 
     @GetMapping(value = "/convocatory/{id}")
@@ -51,7 +50,7 @@ public class ConvocatoryController {
         convocatoryService.saveConvocatory(convocatory);
     }
 
-    @PutMapping(value = "/convocatory/edit/{id}")
+    @PutMapping(value = "/convocatory")
     public void editConvocatory(@RequestBody Convocatory convocatory) throws HttpMessageNotReadableException {
         convocatoryService.saveConvocatory(convocatory);
     }

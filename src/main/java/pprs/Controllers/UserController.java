@@ -47,7 +47,7 @@ public class UserController {
             throw new IncorrectUserNameException("");
     }
 
-    @PostMapping(value = "/user/edit")
+    @PutMapping(value = "/user")
     public void editUser(@RequestBody User user) throws UserNotFoundException {
         User userEdited = userService.findById(user.getId());
         if (userEdited != null) {
@@ -56,11 +56,11 @@ public class UserController {
             throw new UserNotFoundException("");
     }
 
-    @PostMapping(value = "/user/delete")
-    public void deleteUser(@RequestBody User user) throws UserNotFoundException{
-        User userEdited = userService.findById(user.getId());
+    @DeleteMapping(value = "/user/{id}")
+    public void deleteUser(@PathVariable String id) throws UserNotFoundException{
+        User userEdited = userService.findById(id);
         if (userEdited != null) {
-            userService.deleteUser(user.getId());
+            userService.deleteUser(id);
         } else
             throw new UserNotFoundException("");
     }
