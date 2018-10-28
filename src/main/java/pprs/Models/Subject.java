@@ -3,14 +3,22 @@ package pprs.Models;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 @Document(collection = "Subjects")
 public class Subject {
 
     @Id
+    @Size(min = 1)
     private String id;
+    @Size(min = 1)
     private String name;
+    @Size(min = 1)
     private String initials;
+    @Size(min = 1)
     private String department;
+    @Size(min = 1)
     private String major;
 
 

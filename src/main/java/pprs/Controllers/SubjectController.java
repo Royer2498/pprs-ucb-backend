@@ -6,6 +6,8 @@ import pprs.Services.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -15,7 +17,7 @@ public class SubjectController {
     private SubjectService subjectService;
 
     @PostMapping(value = "/subject")
-    public void saveSubject(@RequestBody Subject subject) throws HttpMessageNotReadableException {
+    public void saveSubject(@Valid @RequestBody Subject subject) throws HttpMessageNotReadableException {
         subjectService.saveSubject(subject);
     }
 
