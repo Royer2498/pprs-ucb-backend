@@ -39,7 +39,7 @@ public class UserController {
     }
 
     @PostMapping(value = "/login")
-    public User login(@Valid @RequestBody User user) throws IncorrectPasswordException, IncorrectUserNameException {
+    public User login(@RequestBody User user) throws IncorrectPasswordException, IncorrectUserNameException {
         if (userService.userNameAlreadyExists(user)) {
             User loggedUser = userService.isPasswordCorrect(user);
             if (loggedUser == null)
