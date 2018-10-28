@@ -2,21 +2,28 @@ package pprs.Models;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Document(collection = "Convocatories")
 public class Convocatory {
 
     @Id
-    @Size(min = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
-    @Size(min = 1)
+    @NotNull
     private String department;
-    @Size(min = 1)
-    private String deadline;
+    @NotNull
+    @Future
+    private Date deadline;
     @Size(min = 1)
     private List subjects = new ArrayList();
 
@@ -36,11 +43,11 @@ public class Convocatory {
         this.department = department;
     }
 
-    public String getDeadline() {
+    public Date getDeadline() {
         return deadline;
     }
 
-    public void setDeadline(String deadline) {
+    public void setDeadline(Date deadline) {
         this.deadline = deadline;
     }
 

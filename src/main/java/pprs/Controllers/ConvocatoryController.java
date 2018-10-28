@@ -1,5 +1,6 @@
 package pprs.Controllers;
 
+import org.springframework.beans.factory.annotation.Value;
 import pprs.Controllers.exception.ConvocatoriesNotFoundException;
 import pprs.Controllers.exception.ConvocatoryNotFoundException;
 import pprs.Models.Convocatory;
@@ -9,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -20,6 +22,7 @@ public class ConvocatoryController {
     @GetMapping(value = "/convocatories")
     public List<Convocatory> listConvocatories() throws ConvocatoriesNotFoundException {
         List<Convocatory> allConvocatories = convocatoryService.listAllConvocatories();
+        System.out.println("****************************************");
         if (allConvocatories.isEmpty()) {
             throw new ConvocatoriesNotFoundException();
         }
@@ -46,12 +49,12 @@ public class ConvocatoryController {
 
     @PostMapping(value = "/convocatory")
     @ResponseStatus(HttpStatus.CREATED)
-    public void saveConvocatory(@RequestBody Convocatory convocatory) throws HttpMessageNotReadableException {
+    public void saveConvocatory(@Valid @RequestBody Convocatory convocatory) throws HttpMessageNotReadableException {
         convocatoryService.saveConvocatory(convocatory);
     }
 
     @PutMapping(value = "/convocatory")
-    public void editConvocatory(@RequestBody Convocatory convocatory) throws HttpMessageNotReadableException {
+    public void editConvocatory(@Valid @RequestBody Convocatory convocatory) throws HttpMessageNotReadableException {
         convocatoryService.saveConvocatory(convocatory);
     }
 }

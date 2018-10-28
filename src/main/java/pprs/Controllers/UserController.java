@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 public class UserController {
 
@@ -19,7 +21,7 @@ public class UserController {
 
     @PostMapping(value = "/registration")
     @ResponseStatus(HttpStatus.CREATED)
-    public void registration(@RequestBody User user) throws HttpMessageNotReadableException, UserAlreadyExistsException {
+    public void registration(@Valid @RequestBody User user) throws HttpMessageNotReadableException, UserAlreadyExistsException {
         boolean userExists = userService.findByUsername(user.getUsername());
         if (!userExists)
             userService.saveUser(user);
@@ -37,7 +39,7 @@ public class UserController {
     }
 
     @PostMapping(value = "/login")
-    public User login(@RequestBody User user) throws IncorrectPasswordException, IncorrectUserNameException {
+    public User login(@Valid @RequestBody User user) throws IncorrectPasswordException, IncorrectUserNameException {
         if (userService.userNameAlreadyExists(user)) {
             User loggedUser = userService.isPasswordCorrect(user);
             if (loggedUser == null)
@@ -48,7 +50,7 @@ public class UserController {
     }
 
     @PutMapping(value = "/user")
-    public void editUser(@RequestBody User user) throws UserNotFoundException {
+    public void editUser(@Valid @RequestBody User user) throws UserNotFoundException {
         User userEdited = userService.findById(user.getId());
         if (userEdited != null) {
             userService.editUser(user);

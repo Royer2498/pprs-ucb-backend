@@ -2,25 +2,25 @@ package pprs.Models;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+
 
 @Document(collection = "Subjects")
 public class Subject {
 
     @Id
-    @Size(min = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
-    @Size(min = 1)
+    @NotNull
     private String name;
-    @Size(min = 1)
+    @NotNull
     private String initials;
-    @Size(min = 1)
+    @NotNull
     private String department;
-    @Size(min = 1)
+    @NotNull
     private String major;
-
 
     public String getId() {
         return id;

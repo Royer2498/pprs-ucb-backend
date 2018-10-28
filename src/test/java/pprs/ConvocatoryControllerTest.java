@@ -35,7 +35,7 @@ public class ConvocatoryControllerTest {
     @MockBean
     private ConvocatoryService convocatoryService;
 
-    @Test
+   /* @Test
     public void givenConvocatoriesWhenGetConvocatoriesThenReturnTheSameConvocatories() throws Exception {
         List<Convocatory> convocatories = new ArrayList<>();
         Convocatory convocatory = new Convocatory();
@@ -137,7 +137,7 @@ public class ConvocatoryControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated());
-    }
+    }*/
 
 }
 
