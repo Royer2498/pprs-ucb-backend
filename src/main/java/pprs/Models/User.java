@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
+import java.util.Date;
 
 @Document(collection = "Users")
 public class User {
@@ -23,7 +24,7 @@ public class User {
     private String motherLastname;
     @NotNull
     @Past
-    private String birthdate;
+    private Date birthdate;
     @NotNull
     @Email
     private String email;
@@ -64,11 +65,11 @@ public class User {
         this.motherLastname = motherLastname;
     }
 
-    public String getBirthdate() {
+    public Date getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(String birthdate) {
+    public void setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
     }
 
