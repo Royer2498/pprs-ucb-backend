@@ -20,13 +20,16 @@ public class ConvocatoryController {
     private ConvocatoryService convocatoryService;
 
     @GetMapping(value = "/convocatories")
-    public List<Convocatory> listConvocatories() throws ConvocatoriesNotFoundException {
-        List<Convocatory> allConvocatories = convocatoryService.listAllConvocatories();
-        System.out.println("****************************************");
-        if (allConvocatories.isEmpty()) {
+    public List<Convocatory> listConvocatories(@RequestParam("department") String department) throws ConvocatoriesNotFoundException {
+        List<Convocatory> convocatories;
+        if (department != null)
+            convocatories = convocatoryService.listConvocatoriesByDepartment(department);
+        else
+            convocatories = convocatoryService.listAllConvocatories();
+        if (convocatories.isEmpty()) {
             throw new ConvocatoriesNotFoundException();
         }
-        return allConvocatories;
+        return convocatories;
     }
 
     @DeleteMapping(value = "/convocatory/{id}")
