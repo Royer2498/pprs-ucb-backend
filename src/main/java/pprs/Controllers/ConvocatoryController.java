@@ -20,8 +20,9 @@ public class ConvocatoryController {
     private ConvocatoryService convocatoryService;
 
     @GetMapping(value = "/convocatories")
-    public List<Convocatory> listConvocatories(@RequestParam("department") String department) throws ConvocatoriesNotFoundException {
+    public List<Convocatory> listConvocatories(@RequestParam(value="department", required=false) String department) throws ConvocatoriesNotFoundException {
         List<Convocatory> convocatories;
+        System.out.println(department);
         if (department != null)
             convocatories = convocatoryService.listConvocatoriesByDepartment(department);
         else
